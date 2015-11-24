@@ -1,16 +1,14 @@
 # Docker: Ubuntu, Nginx and PHP Stack
 
-This is the basis for LEMP stack (minus MySQL). This is based on [phusion/baseimage-docker](https://github.com/phusion/baseimage-docker) base Ubuntu image, which takes care of system issues which Docker's base Ubuntu image does not take care of, such as watching processes, logrotate, ssh server, cron and syslog-ng.
-
-You can build this yourself after cloning the project (assuming you have Docker installed).
+This is the basis for LEMP stack (minus MySQL). This is based on [phusion/baseimage-docker](https://github.com/phusion/baseimage-docker) base Ubuntu image.
 
 ```bash
-cd /path/to/repo/docker-nginx-php
-docker build -t webapp . # Build a Docker image named "webapp" from this location "."
+cd /path/to/repo/docker-workerman
+docker build -t worker . # Build a Docker image named "worker" from this location "."
 # wait for it to build...
 
 # Run the docker container
-docker run -v /path/to/local/web/files:/var/www:rw -p 80:80 -d webapp /sbin/my_init --enable-insecure-key
+docker run -v /path/to/local/web/files:/var/www:rw -p 80:80 -d worker /sbin/my_init --enable-insecure-key
 ```
 
 This will bind local port 80 to the container's port 80. This means you should be able to go to "localhost" in your browser (or the IP address of your virtual machine oh which Docker is running) and see your web application files.
